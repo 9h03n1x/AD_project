@@ -4,9 +4,11 @@ Created on 09.03.2019
 @author: Nicco
 '''
 
-class sim_base(object):
+from simulator.simulator_base import sim_base
+
+class sim_trajectory(sim_base):
     '''
-    base_class of the simulator, providing all necessary methods for derived simulators
+    classdocs
     '''
 
 

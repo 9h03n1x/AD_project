@@ -4,9 +4,9 @@ Created on 09.03.2019
 @author: Nicco
 '''
 
-class sim_base(object):
+class plan_base(object):
     '''
-    base_class of the simulator, providing all necessary methods for derived simulators
+    plan base is providing alle the methods to connect to act, perception and the simulator
     '''
 
 

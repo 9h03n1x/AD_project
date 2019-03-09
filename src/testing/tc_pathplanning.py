@@ -4,9 +4,9 @@ Created on 09.03.2019
 @author: Nicco
 '''
 
-class sim_base(object):
+class tc_pathplanning(object):
     '''
-    base_class of the simulator, providing all necessary methods for derived simulators
+    classdocs
     '''
 
 
