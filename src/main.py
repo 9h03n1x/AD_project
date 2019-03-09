@@ -10,5 +10,5 @@ if __name__ == '__main__':
     """
     here the testing routine is started
     """
-    
-    test_planner.run()
+    tp = test_planner()
+    tp.run()

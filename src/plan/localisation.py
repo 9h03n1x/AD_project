@@ -4,7 +4,7 @@ Created on 09.03.2019
 @author: Nicco
 '''
 
-class tc_base(object):
+class localisation():
     '''
     classdocs
     '''
@@ -14,10 +14,4 @@ class tc_base(object):
         '''
         Constructor
         '''
-        self.name = ""
-    
-    def __set_name(self,name):
-        self.name = name
         
-    def __name(self):
-        return self.name
