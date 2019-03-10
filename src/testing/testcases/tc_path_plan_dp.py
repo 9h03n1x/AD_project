@@ -17,5 +17,6 @@ class tp_path_plan_dp(tc_base):
         '''
         Constructor
         '''
-        tc_base.__init__(self)
-        self.__set_name("tp_path_plan_dp")
+        self.name = "tp_path_plan_dp"
+        tc_base.__init__(self,self.name)
+        self.__set_name(self.name)

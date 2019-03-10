@@ -57,3 +57,6 @@ class behavior_planner(object):
     
     def successor_states(self):
         pass
+    
+    def cost_funtion_velocity(self):
+        pass

@@ -3,6 +3,7 @@ Created on 09.03.2019
 
 @author: Nicco
 '''
+from logger.logger import logger
 
 class tc_base(object):
     '''
@@ -10,11 +11,12 @@ class tc_base(object):
     '''
 
 
-    def __init__(self, params):
+    def __init__(self, name):
         '''
         Constructor
         '''
         self.name = ""
+        self.logger = logger(name)
     
     def __set_name(self,name):
         self.name = name

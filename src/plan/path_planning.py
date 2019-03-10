@@ -26,3 +26,11 @@ class path_a_star(object):
         '''
         Constructor
         '''
+        
+class path_hyprid_a_star():
+    '''
+    '''
+    def __init__(self):
+        '''
+        Constructor
+        '''
