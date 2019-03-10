@@ -12,13 +12,13 @@ class tc_path_plan_a_star(tc_base):
     '''
 
 
-    def __init__(self,):
+    def __init__(self):
         '''
         Constructor
         '''
         self.name = "tc_pathplan_a_star"
         tc_base.__init__(self, self.name)
-        self.__set_name(self.name)
+        #self.__set_name(self.name)
         
     def run(self):
         pass

@@ -5,6 +5,7 @@ Created on 09.03.2019
 '''
 from logger.logger import logger
 
+
 class tc_base(object):
     '''
     classdocs
@@ -15,7 +16,7 @@ class tc_base(object):
         '''
         Constructor
         '''
-        self.name = ""
+        self.name = name
         self.logger = logger(name)
     
     def __set_name(self,name):
