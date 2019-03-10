@@ -20,7 +20,7 @@ class logger():
         """
         log the message to the console
         """
-        log = level + " " + self.parent +"\t" +msg
+        log = level + "\t" + self.parent +"\t" +msg
         print(log)
         
     
