@@ -10,7 +10,7 @@ class path_dynamic_prog(object):
     '''
 
 
-    def __init__(self, params):
+    def __init__(self):
         '''
         Constructor
         '''
@@ -22,7 +22,7 @@ class path_a_star(object):
     '''
 
 
-    def __init__(self, params):
+    def __init__(self):
         '''
         Constructor
         '''

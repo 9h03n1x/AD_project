@@ -20,7 +20,12 @@ class logger():
         """
         log the message to the console
         """
-        log = level + "\t" + self.parent +"\t" +msg
+        if len(self.parent)> 13:
+            spacer = "\t"
+        else:
+            spacer = "\t\t"
+        
+        log = level + "\t" + self.parent +spacer +msg
         print(log)
         
     
