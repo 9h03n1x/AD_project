@@ -45,12 +45,59 @@ class visualisation(object):
                 space = space + "|---"
             self.logger.write_log(space[:-3], "_SIM_")
             self.logger.write_log(msg, "_SIM_")
-        self.logger.write_log(space[:-3], "_SIM_")    
+        self.logger.write_log(space[:-3], "_SIM_")
+        self.logger.write_log(len(msg)*"#" + "\n") 
                 
         
     def set_obsticales(self, static = [], dynamic = []):
         """
         set the obsticals both static an dynamic
+        static and dynamic obsticals have these attributes in common
+        
+        array [ y1, x1, y2, x2, id] 
         """
+        for  obj in static:
+            if obj[0]<0 or obj[0]>len(self.grid):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            elif obj[1]<0 or obj[1]>len(self.grid[0]):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            elif obj[2]<0 or obj[2]>len(self.grid):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            elif obj[3]<0 or obj[3]>len(self.grid[0]):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            else:
+                for i in range(obj[2]-obj[0]):
+                    for j in range(obj[3]-obj[1]):
+                        y = obj[0] + i
+                        x = obj[1] + j
+                        self.grid[y][x] = "###"
+                
+        for  obj in dynamic:
+            if obj[0]<0 or obj[0]>len(self.grid):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            elif obj[1]<0 or obj[1]>len(self.grid[0]):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            elif obj[2]<0 or obj[2]>len(self.grid):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            elif obj[3]<0 or obj[3]>len(self.grid[0]):
+                self.logger.write_log("object out of boundarys: " + str(obj))
+            else:
+                for i in range(obj[2]-obj[0]):
+                    for j in range(obj[3]-obj[1]):
+                        y = obj[0] + i
+                        x = obj[1] + j
+                        self.grid[y][x] = "dyn"
+        
+    def set_ego(self, position):
+        """
+        """
+        cell =self.grid[position["y"]][position["x"]]
+        if cell != "dyn" or cell != "###":
+            self.grid[position["y"]][position["x"]] = " "+position["heading"]+" "
+                    
+
+                
+        
+        
         
         

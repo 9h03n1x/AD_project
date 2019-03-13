@@ -27,8 +27,15 @@ class tc_path_plan_a_star(tc_base):
         
     def run(self):
         self.logger.write_log("start running testcase: " + self.name)
-        self.visu.draw_grid()
+        #self.visu.draw_grid()
         
-    
+        
+        static = [[2,2,7,5], [2,5,3,15]]
+        dynamic = [[10,10,12,14]] # kommt später aus perception
+        position = {"y":0,"x":0,"heading":"v"}
+        
+        self.visu.set_ego(position)
+        self.visu.set_obsticales(static, dynamic)
+        self.visu.draw_grid()
         
         
