@@ -12,11 +12,11 @@ class visualisation(object):
     '''
 
 
-    def __init__(self, params):
+    def __init__(self):
         '''
         Constructor
         '''
-        self.logger = logger()
+        self.logger = logger("simulator")
         self.grid = []
         self.grid_size = []
         self.static_obj = []
@@ -28,20 +28,24 @@ class visualisation(object):
         set the grid size for the planning trjectories
         """
         self.grid_size = size
-        for i in range(self.size[0]):
+        for i in range(self.grid_size[0]):
             self.grid.append([])
-            for j in range(self.size[1]):
+            for j in range(self.grid_size[1]):
                 self.grid[i].append("   ")
                 
     def draw_grid(self):
         """
         draw the grid with the logger
         """
-        for i in range(self.size[0]):
-            msg = ""
-            for j in range(self.size[1]):
-                msg = msg + self.grid[i][j]
-            self.logger._write_logs(msg, "_SIM_")
+        for i in range(self.grid_size[0]):
+            msg = "|"
+            space = "|---"
+            for j in range(self.grid_size[1]):
+                msg = msg + self.grid[i][j]+"|"
+                space = space + "|---"
+            self.logger.write_log(space[:-3], "_SIM_")
+            self.logger.write_log(msg, "_SIM_")
+        self.logger.write_log(space[:-3], "_SIM_")    
                 
         
     def set_obsticales(self, static = [], dynamic = []):

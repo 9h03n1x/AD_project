@@ -22,11 +22,12 @@ class tc_path_plan_a_star(tc_base):
         tc_base.__init__(self, self.name)
         self.path_plan = path_a_star()
         self.visu = visualisation()
-        self.visu.set_grid([5,5])
-        #self.__set_name(self.name)
+        self.visu.set_grid([15,25]) # hoehe x breite
+        #self.set_name(self.name)
         
     def run(self):
         self.logger.write_log("start running testcase: " + self.name)
+        self.visu.draw_grid()
         
     
         

@@ -19,7 +19,7 @@ class tc_base(object):
         self.name = name
         self.logger = logger(name)
     
-    def __set_name(self,name):
+    def set_name(self,name):
         self.name = name
         
     def __name(self):
