@@ -30,8 +30,8 @@ class tc_path_plan_a_star(tc_base):
         #self.visu.draw_grid()
         
         
-        static = [[2,2,7,5], [2,5,3,15]]
-        dynamic = [[10,10,12,14]] # kommt später aus perception
+        static = [[0,2,7,5], [2,5,3,15]]
+        dynamic = [[10,10,11,12],[11,12,12,14]] # kommt später aus perception
         position = {"y":0,"x":0,"heading":"v"}
         
         self.visu.set_ego(position)
