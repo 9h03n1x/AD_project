@@ -69,5 +69,6 @@ class test_planner(object):
                 self.logger.write_log("running postcondition: " + postCon + "\n")
                 tc_class.__dict__[postCon](tc_obj)
             
-                
+            self.logger.write_log("-------------------------------------------------")
+            self.logger.write_log("finished testcase: " + tc_key)  
             
