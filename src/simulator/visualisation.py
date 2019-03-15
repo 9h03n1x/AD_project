@@ -34,15 +34,27 @@ class visualisation(object):
             for j in range(self.grid_size[1]):
                 self.grid[i].append("   ")
                 
-    def draw_grid(self):
+    def draw_grid(self, external_grid =None):
         """
         draw the grid with the logger
         """
-        for i in range(self.grid_size[0]):
+        if external_grid == None:
+            grid = self.grid
+        else:
+            grid = external_grid
+            
+        grid_size = [len(grid),len(grid[0])]
+        for i in range(grid_size[0]):
             msg = "|"
             space = "|---"
-            for j in range(self.grid_size[1]):
-                msg = msg + self.grid[i][j]+"|"
+            for j in range(grid_size[1]):
+                if grid[i][j] != -1:
+                    ele = str(grid[i][j])
+                else:
+                    ele = ""
+                l_ele = 3-len(ele)
+                ele = l_ele*" " + ele
+                msg = msg + ele +"|"
                 space = space + "|---"
             self.logger.write_log(space[:-3], "_SIM_")
             self.logger.write_log(msg, "_SIM_")
