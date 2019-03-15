@@ -21,7 +21,8 @@ class visualisation(object):
         self.grid_size = []
         self.static_obj = []
         self.dynamic_obj = []
-        
+        self.prev_pos_ego = {}
+        self.path = []
         
     def set_grid(self, size = [0,0]):
         """
@@ -88,14 +89,29 @@ class visualisation(object):
                         x = obj[1] + j
                         self.grid[y][x] = "dyn"
         
-    def set_ego(self, position):
+    def set_ego(self, position, keep_history = True):
         """
+        set the ego position of the current vehicle
+        """
+        if keep_history == False:
+            self.grid[self.prev_pos_ego["y"]][self.prev_pos_ego["x"]] = "   "
+            
+        cell =self.grid[position["y"]][position["x"]]
+        if cell != "dyn" or cell != "###":
+            if keep_history == False:
+                self.grid[self.prev_pos_ego["y"]][self.prev_pos_ego["x"]] = "   "
+            self.grid[position["y"]][position["x"]] = " "+position["heading"]+" "
+            self.prev_pos_ego = position
+            self.path.append(position)
+                    
+    def set_target(self, position):
+        """
+        set the target position in the grid for the target location
         """
         cell =self.grid[position["y"]][position["x"]]
         if cell != "dyn" or cell != "###":
-            self.grid[position["y"]][position["x"]] = " "+position["heading"]+" "
-                    
-
+            self.grid[position["y"]][position["x"]] = " X "
+        
                 
         
         
