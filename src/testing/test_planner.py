@@ -6,6 +6,8 @@ Created on 09.03.2019
 from . import testcases
 from testing.testcases import tc_path_plan_a_star as testcase
 from logger.logger import logger
+import time
+
 
 class test_planner(object):
     '''
@@ -20,6 +22,7 @@ class test_planner(object):
         self.list_tc = {}
         self.list_tc_init={}
         self.logger = logger("test_planner")
+        self.results = []
     
     def get_available_testcases(self):
         """
@@ -30,12 +33,12 @@ class test_planner(object):
             self.list_tc_init[key] = self.list_tc[key]()
             
         
-    
+
     def run(self):
         for tc_key in self.list_tc.keys():
             self.logger.write_log("-------------------------------------------------")
             self.logger.write_log("running testcase: " + tc_key)
-            
+            starttime = time.time()
             tc_obj = self.list_tc_init[tc_key]
             tc_class = self.list_tc[tc_key]
             preCon_keys = []
@@ -68,7 +71,12 @@ class test_planner(object):
             for postCon in postCon_keys:
                 self.logger.write_log("running postcondition: " + postCon + "\n")
                 tc_class.__dict__[postCon](tc_obj)
-            
+            duration = time.time()-starttime
             self.logger.write_log("-------------------------------------------------")
-            self.logger.write_log("finished testcase: " + tc_key)  
+            self.logger.write_log("finished testcase: " + tc_key +" in " +str(duration)[:6])  
+            
+            self.results.append({"name":tc_key, "duration":duration,"result":False})
+        
+        return self.results
+            
             

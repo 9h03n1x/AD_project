@@ -28,7 +28,11 @@ class tc_path_plan_a_star(tc_base):
         # define the testcase variable:
         self.position = {"y":0,"x":0,"heading":"v"}
         self.target = {"y":14,"x":24}
-        self.static = [[0,2,7,5], [0,5,3,15], [0,1,12,2]]
+        self.static = [[0,2,7,5], 
+                       [0,5,3,15], 
+                       [0,1,14,2],
+                       [13,10,15,20],
+                       [8,14,13,17]]
 
         
         

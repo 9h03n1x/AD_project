@@ -22,6 +22,8 @@ class logger():
         """
         if len(self.parent)> 13:
             spacer = "\t"
+        elif len(self.parent) < 8:
+            spacer = "\t\t\t"
         else:
             spacer = "\t\t"
         

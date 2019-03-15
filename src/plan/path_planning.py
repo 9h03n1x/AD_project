@@ -6,6 +6,7 @@ Created on 09.03.2019
 
 from logger.logger import logger
 
+
 class path_dynamic_prog(object):
     '''
     classdocs
@@ -100,7 +101,7 @@ class path_a_star(object):
                         y = obj[0] + i
                         x = obj[1] + j
                         self.grid[y][x] = -1   
-        
+  
     def search(self, init, goal, cost):
         # ----------------------------------------
         # modify the code below
