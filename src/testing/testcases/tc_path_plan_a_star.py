@@ -24,12 +24,18 @@ class tc_path_plan_a_star(tc_base):
         self.visu = visualisation()
         self.visu.set_grid([15,25]) # hoehe x breite
         #self.set_name(self.name)
+        self.logger.write_log("init testcase: " + self.name)
         
     def run(self):
         self.logger.write_log("start running testcase: " + self.name)
-        #self.visu.draw_grid()
         
         
+        
+        
+        
+    def precondition_01_init_grid(self):
+        """
+        """   
         static = [[0,2,7,5], [2,5,3,15]]
         dynamic = [[10,10,11,12],[11,12,12,14]] # kommt später aus perception
         position = {"y":0,"x":0,"heading":"v"}
@@ -37,5 +43,3 @@ class tc_path_plan_a_star(tc_base):
         self.visu.set_ego(position)
         self.visu.set_obsticales(static, dynamic)
         self.visu.draw_grid()
-        
-        
