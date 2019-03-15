@@ -36,10 +36,14 @@ class tc_path_plan_a_star(tc_base):
         """
         set the grid for the visualisation, and init the pathplanner
         """   
+        grid_size = [15,25]
         self.visu = visualisation()
-        self.visu.set_grid([15,25]) # hoehe x breite
+        self.visu.set_grid(grid_size) # hoehe x breite
         self.visu.draw_grid()
         #TODO init the a* search algo
+        self.a_star = path_a_star()
+        self.a_star.set_grid_size(grid_size)
+        self.a_star.set_heuristic([0,0],[14,24])
         
     def precondition_02_set_obsticales(self):
         """
@@ -49,8 +53,10 @@ class tc_path_plan_a_star(tc_base):
         #dynamic = [[10,10,11,12],[11,12,12,14]] # kommt später aus perception
         dynamic = []
         position = {"y":0,"x":0,"heading":"v"}
+        target = {"y":14,"x":24}
         self.visu.set_ego(position)
         self.visu.set_obsticales(static, dynamic)
+        self.visu.set_target(target)
         self.visu.draw_grid()
         
         

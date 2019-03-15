@@ -25,7 +25,7 @@ class logger():
         else:
             spacer = "\t\t"
         
-        log = level + "\t" + self.parent +spacer +msg
+        log = level + "\t" + self.parent +spacer +str(msg)
         print(log)
         
     
