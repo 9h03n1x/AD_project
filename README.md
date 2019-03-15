@@ -13,4 +13,8 @@ The Project consist of the Following Modules:
   - ego: describing a simple motion modell
   - testing: containing the testplanner and the testcases
   - logger: a logger utility for better debugging purposes
+  
+So far only one testcase is implemented, the testcase for the A* Algo, currently there is still a bug with the heuristic function
+
+To run the testcase, just clone the repo and run the main.py
 
