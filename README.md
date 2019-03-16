@@ -16,6 +16,8 @@ The Project consist of the Following Modules:
       - Dynamic Programming Planner (under work, compute value is done)
       - Hypbrid A* Planner (not yet implemented)
   - ego: describing a simple motion modell
+    - ego_base: providing the basic features for ego modells
+    - simple_ego: very simple motion modell for the first algo's
   - testing: containing the testplanner and the testcases
   - logger: a logger utility for better debugging purposes
   
