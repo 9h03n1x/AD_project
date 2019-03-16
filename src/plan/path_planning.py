@@ -100,7 +100,7 @@ class path_dynamic_prog(path_base):
         
     def compute_value(self,goal,cost):
         # ----------------------------------------
-        # insert code below
+        # compute the values of the single grid cells
         # ----------------------------------------
         delta = [[-1, 0 ], # go up
                  [ 0, -1], # go left
