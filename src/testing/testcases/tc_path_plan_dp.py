@@ -26,10 +26,16 @@ class tp_path_plan_dp(tc_base):
         self.grid_size=[15,25]
         
     def precondition_01_init_pathplan(self):
+        """
+        init the pathplanning algo and the visualisation
+        """
         self.path_plan.set_grid_size(self.grid_size)
         self.visu.set_grid(self.grid_size) # hoehe x breite
     
     def precondition_02_set_obsticals(self):
+        """
+        set the defined obsticals in both grid, pathplanner and visu
+        """
         self.static = [[0,2,7,5], 
                        [0,5,3,15], 
                        [0,1,12,2],

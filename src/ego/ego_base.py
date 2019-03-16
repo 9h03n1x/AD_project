@@ -15,6 +15,13 @@ class ego_base():
         return self.position
     
     def set_position(self,x,y,theta):
+        """
+        set the initial postion of the ego
+        x,y = int within the grid
+        theta: str "N","E","S","W"
+        """
         self.position["x"] = x
         self.position["y"] = y
         self.position["theta"] = theta
+    
+    
