@@ -28,12 +28,12 @@ How To add a Testcase:
 1. Create a new Testcase file in the testcase folder
 2. the Class in the testcase file has to have a "__init__" method, 
     the different teststeps and preconditions as well as the post conditions are methods as well, for example to add a precondition   step,
-    define a method called
-      def preconditon_01_first(self):
+      define a method called
+        def preconditon_01_first(self):
   
    for the second step in the preconditions just ad another method, called precondition_02(self), please do not pass parameters via the   teststeps
-   to add a teststep:
-    def teststep_01(self):
+    to add a teststep:
+      def teststep_01(self):
   
 3. Now the testcase has to be registered in the init.py file of the testcase module
   - import the testcase
