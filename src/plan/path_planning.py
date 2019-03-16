@@ -6,29 +6,11 @@ Created on 09.03.2019
 
 from logger.logger import logger
 
-
-class path_dynamic_prog(object):
-    '''
-    classdocs
-    '''
-
-
+class path_base():
     def __init__(self):
         '''
         Constructor
         '''
-        
-        
-class path_a_star(object):
-    '''
-    classdocs
-    '''
-    def __init__(self):
-        '''
-        Constructor
-        '''
-        self.logger = logger("path_a_star")
-        self.logger.write_log("init search A*")
         self.grid = []
         self.grid_size=[]
         self.heuristic = []
@@ -101,6 +83,88 @@ class path_a_star(object):
                         y = obj[0] + i
                         x = obj[1] + j
                         self.grid[y][x] = -1   
+    
+
+class path_dynamic_prog(path_base):
+    '''
+    classdocs
+    '''
+
+
+    def __init__(self):
+        '''
+        Constructor
+        '''
+        path_base.__init__(self)
+        self.logger = logger("path_dynamic_prog")
+        
+    def compute_value(self,goal,cost):
+        # ----------------------------------------
+        # insert code below
+        # ----------------------------------------
+        delta = [[-1, 0 ], # go up
+                 [ 0, -1], # go left
+                 [ 1, 0 ], # go down
+                 [ 0, 1 ]] # go right
+
+        delta_name = ['^', '<', 'v', '>']
+        value = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
+        closed = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
+        
+        x = goal[0]
+        y = goal[1]
+        closed[x][y]=1
+        g = 0
+        found = False
+        resign = False
+        count = 1
+        option = [[g,x,y]]
+        while found == False and resign == False and count < 100:
+            count = count + 1
+            if len(option)== 0:
+                resign = True
+            option.sort()
+            option.reverse()
+            var = option.pop()
+            x = var[1]
+            y = var[2]
+            if x==0 and y==0:
+                found = True
+            else:
+                for i in range(len(delta)):
+                    x2 = x + delta[i][0]
+                    y2 = y + delta[i][1]
+                    if x2 >= 0 and x2 < len(self.grid) and y2 >=0 and y2 < len(self.grid[0]):
+                        
+                        if closed[x2][y2] == 0:
+                            
+                            if self.grid[x2][y2]=="###":
+                                value[x2][y2] = 999
+                            else:
+                                g = g + 1
+                                value[x2][y2] = g
+                                option.append([g,x2,y2])
+                            closed[x2][y2] = 1
+            
+        # make sure your function returns a grid of values as 
+        # demonstrated in the previous video.
+        for line in value:
+            print(line)
+        return value 
+        
+        
+class path_a_star(path_base):
+    '''
+    classdocs
+    '''
+    def __init__(self):
+        '''
+        Constructor
+        '''
+        path_base.__init__(self)
+        self.logger = logger("path_a_star")
+        self.logger.write_log("init search A*")
+    
   
     def search(self, init, goal, cost):
         # ----------------------------------------

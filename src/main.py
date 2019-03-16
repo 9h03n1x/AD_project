@@ -29,6 +29,12 @@ if __name__ == '__main__':
             avg_dur = avg_dur + res["duration"]
             count+=1
             log.write_log(res["name"] + ":\t result " + str(res["result"]) + "\t duration:" + str(res["duration"])[:6]  )
+
+    for res in results:
+        if res["name"] == "tp_path_plan_dp":
+            avg_dur = avg_dur + res["duration"]
+            count+=1
+            log.write_log(res["name"] + ":\t result " + str(res["result"]) + "\t duration:" + str(res["duration"])[:6]  )
     log.write_log("--------------------------------------------------------")
     log.write_log("average testcase duration: " +str(avg_dur/count)[:6])
    
