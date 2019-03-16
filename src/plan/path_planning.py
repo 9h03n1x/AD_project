@@ -114,12 +114,14 @@ class path_dynamic_prog(path_base):
                      [ 0, -1], # go left
                      [ 1, 0 ], # go down
                      [ 0, 1 ]] # go right
+            delta_name = ['^', '<', 'v', '>']
         else:
             #TODO: Implement the simple Ego modell
-            pass
+            delta = self.ego.get_move_options()
+            delta_name = []
             
     
-            delta_name = ['^', '<', 'v', '>']
+            
         value = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         closed = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         policy = [[" " for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
