@@ -6,6 +6,7 @@ Created on 09.03.2019
 
 from logger.logger import logger
 
+
 class path_base():
     def __init__(self):
         '''
@@ -112,6 +113,7 @@ class path_dynamic_prog(path_base):
         delta_name = ['^', '<', 'v', '>']
         value = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         closed = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
+        policy = [[" " for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         
         x = goal[0]
         y = goal[1]
@@ -128,6 +130,9 @@ class path_dynamic_prog(path_base):
                 resign = True
             option.sort()
             option.reverse()
+            if len(option) == 0:
+                resign = True
+                break
             var = option.pop()
             x = var[1]
             y = var[2]
@@ -140,20 +145,49 @@ class path_dynamic_prog(path_base):
                     if x2 >= 0 and x2 < len(self.grid) and y2 >=0 and y2 < len(self.grid[0]):
                         
                         if closed[x2][y2] == 0:
-                            
                             if self.grid[x2][y2]!=0:
-                                value[x2][y2] = "###"
+                                value[x2][y2] = 999
                             else:
                                 g = value[x][y] +1
                                 value[x2][y2] = g
                                 option.append([g,x2,y2])
                             closed[x2][y2] = 1
-                #g= g + 1
+        
+        #get the policy for the movements
+        for x in range(len(self.grid)):
+            for y in range(len(self.grid[0])):
+                if value[x][y] < 999 and value[x][y] >0:
+                    policy[x][y] = "x"
+                    lowest_val2 = 999
+                    target = 0
+                    for i in range(len(delta)):
+                        x2 = x + delta[i][0]
+                        y2 = y + delta[i][1]
+                        if x2 >= 0 and x2 < len(self.grid) and y2 >=0 and y2 < len(self.grid[0]):
+                            if value[x2][y2] < lowest_val2:
+                                lowest_val2 = value[x2][y2]
+                                if value[x][y] > lowest_val2:
+                                    target = i
+                    policy[x][y] = delta_name[target]
+        policy[goal[0]][goal[1]] ="*"
         # make sure your function returns a grid of values as 
         # demonstrated in the previous video.
-        value[goal[0]][goal[1]] = "GOA"
+
         self.value_grid = value
-        return value 
+        for i in range(len(value)):
+            for j in range(len(value[0])):
+                if value[i][j] == 999:
+                    value[i][j] = "###"
+                    policy[i][j] = "###"
+                elif value[i][j] == 0:
+                    if i == goal[0] and j == goal[1]:
+                        value[i][j] = "GOA"
+                        policy[i][j] = "GOA"
+                    else:
+                        value[i][j] = "###"
+                        policy[i][j] = "###"
+                        
+        return value,policy
         
         
 class path_a_star(path_base):
