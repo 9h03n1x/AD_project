@@ -8,7 +8,7 @@ from plan.path_planning import path_a_star
 from simulator.visualisation import visualisation
 
 
-class tc_path_plan_a_star(tc_base):
+class tc_path_plan_a_star_road(tc_base):
     '''
     classdocs
     '''
@@ -26,13 +26,14 @@ class tc_path_plan_a_star(tc_base):
         self.logger.write_log("init testcase: " + self.name)
         
         # define the testcase variable:
-        self.position = {"y":0,"x":0,"heading":"v"}
-        self.target = {"y":14,"x":24}
-        self.static = [[0,2,7,5], 
-                       [0,5,3,15], 
-                       [0,1,12,2],
-                       [13,10,15,20],
-                       [8,14,13,17]]
+        self.position = {"y":14,"x":14,"heading":"^"}
+        self.target = {"y":6,"x":0}
+        self.static = [[0,0,6,13], 
+                       [8,0,15,13], 
+                       [2,15,6,23],
+                       [8,15,11,25],
+                       [13,15,15,25]]
+
 
         
         
@@ -70,9 +71,8 @@ class tc_path_plan_a_star(tc_base):
         position = self.position
         target = self.target
         static = self.static
-        cost = [1,1,1,1]
+        cost = [1,100,10,1]
         self.a_star.set_obsticals(static, [])
-        
         expand_grid,action = self.a_star.search([position["y"],position["x"]],[target["y"],target["x"]],cost)
         self.visu.draw_grid(expand_grid)
         self.visu.draw_grid(action)

@@ -156,7 +156,7 @@ class path_a_star(object):
                         y2 = y + delta[i][1]
                         if x2 >= 0 and x2 < len(self.grid) and y2 >=0 and y2 < len(self.grid[0]):
                             if closed[x2][y2] == 0 and self.grid[x2][y2] == 0:
-                                f = g + cost + self.heuristic[x2][y2]
+                                f = g + cost[i] + self.heuristic[x2][y2]
                                 open.append([f,g+1, x2, y2])
                                 closed[x2][y2] = 1
                                 action[x][y] = delta_name[i]
