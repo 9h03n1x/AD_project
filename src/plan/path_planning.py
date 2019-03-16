@@ -120,9 +120,10 @@ class path_a_star(object):
     
         x = init[0]
         y = init[1]
-        g = 0 + self.heuristic[x][y]
+        g = 0 #+ self.heuristic[x][y]
+        f = g + self.heuristic[x][y]
     
-        open = [[g, x, y]]
+        open = [[f, g, x, y]]
     
         found = False  # flag that is set when search is complete
         resign = False # flag set if we can't find expand
@@ -138,9 +139,10 @@ class path_a_star(object):
                 open.sort()
                 open.reverse()
                 next = open.pop()
-                x = next[1]
-                y = next[2]
-                g = next[0]#+heuristic[x][y]
+                x = next[2]
+                y = next[3]
+                g = next[1]#+heuristic[x][y]
+                f = next[0]
                 expand[x][y] = count
                 count += 1
                 
@@ -154,8 +156,8 @@ class path_a_star(object):
                         y2 = y + delta[i][1]
                         if x2 >= 0 and x2 < len(self.grid) and y2 >=0 and y2 < len(self.grid[0]):
                             if closed[x2][y2] == 0 and self.grid[x2][y2] == 0:
-                                g2 = g + cost + self.heuristic[x2][y2]
-                                open.append([g2, x2, y2])
+                                f = g + cost + self.heuristic[x2][y2]
+                                open.append([f,g+1, x2, y2])
                                 closed[x2][y2] = 1
                                 action[x][y] = delta_name[i]
         return expand,action
