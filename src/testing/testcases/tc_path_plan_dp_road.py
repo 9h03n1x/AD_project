@@ -69,8 +69,7 @@ class tc_path_plan_dp_road(tc_base):
         static = self.static
         cost = [1,100,10,1]
         self.path_plan.set_obsticals(static, [])
-        goal = [10,20]
-        cost = 1
+        goal = [self.target["y"],self.target["x"]]
         value_grid, policy_grid = self.path_plan.compute_value(goal, cost)
         self.logger.write_log("value_grid")
         self.visu.draw_grid(value_grid)

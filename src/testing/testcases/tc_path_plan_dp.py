@@ -44,7 +44,7 @@ class tp_path_plan_dp(tc_base):
         calculate the value function
         """
         goal = [10,20]
-        cost = 1
+        cost = [1,1,1,1]
         value_grid, policy_grid = self.path_plan.compute_value(goal, cost)
         self.logger.write_log("value_grid: ")
         self.visu.draw_grid(value_grid)

@@ -148,7 +148,7 @@ class path_dynamic_prog(path_base):
                             if self.grid[x2][y2]!=0:
                                 value[x2][y2] = 999
                             else:
-                                g = value[x][y] +1
+                                g = value[x][y] +cost[i]
                                 value[x2][y2] = g
                                 option.append([g,x2,y2])
                             closed[x2][y2] = 1
@@ -170,10 +170,9 @@ class path_dynamic_prog(path_base):
                                     target = i
                     policy[x][y] = delta_name[target]
         policy[goal[0]][goal[1]] ="*"
-        # make sure your function returns a grid of values as 
-        # demonstrated in the previous video.
-
+        
         self.value_grid = value
+        
         for i in range(len(value)):
             for j in range(len(value[0])):
                 if value[i][j] == 999:
@@ -186,7 +185,7 @@ class path_dynamic_prog(path_base):
                     else:
                         value[i][j] = "###"
                         policy[i][j] = "###"
-                        
+        
         return value,policy
         
         
