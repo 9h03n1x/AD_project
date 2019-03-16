@@ -83,7 +83,8 @@ class path_base():
                         y = obj[0] + i
                         x = obj[1] + j
                         self.grid[y][x] = -1   
-    
+    def get_grid(self):
+        return self.grid
 
 class path_dynamic_prog(path_base):
     '''
@@ -97,6 +98,7 @@ class path_dynamic_prog(path_base):
         '''
         path_base.__init__(self)
         self.logger = logger("path_dynamic_prog")
+        self.value_grid = []
         
     def compute_value(self,goal,cost):
         # ----------------------------------------
@@ -114,12 +116,13 @@ class path_dynamic_prog(path_base):
         x = goal[0]
         y = goal[1]
         closed[x][y]=1
-        g = 0
+        g = 1
         found = False
         resign = False
         count = 1
         option = [[g,x,y]]
-        while found == False and resign == False and count < 100:
+        max_iter = len(self.grid[0])*len(self.grid)+10
+        while found == False and resign == False and count <max_iter :
             count = count + 1
             if len(option)== 0:
                 resign = True
@@ -138,18 +141,18 @@ class path_dynamic_prog(path_base):
                         
                         if closed[x2][y2] == 0:
                             
-                            if self.grid[x2][y2]=="###":
-                                value[x2][y2] = 999
+                            if self.grid[x2][y2]!=0:
+                                value[x2][y2] = "###"
                             else:
-                                g = g + 1
+                                g = value[x][y] +1
                                 value[x2][y2] = g
                                 option.append([g,x2,y2])
                             closed[x2][y2] = 1
-            
+                #g= g + 1
         # make sure your function returns a grid of values as 
         # demonstrated in the previous video.
-        for line in value:
-            print(line)
+        value[goal[0]][goal[1]] = "GOA"
+        self.value_grid = value
         return value 
         
         

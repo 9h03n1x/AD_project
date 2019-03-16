@@ -25,9 +25,19 @@ class tp_path_plan_dp(tc_base):
         self.visu = visualisation()
         self.grid_size=[15,25]
         
-    def precondition_01(self):
+    def precondition_01_init_pathplan(self):
         self.path_plan.set_grid_size(self.grid_size)
         self.visu.set_grid(self.grid_size) # hoehe x breite
+    
+    def precondition_02_set_obsticals(self):
+        self.static = [[0,2,7,5], 
+                       [0,5,3,15], 
+                       [0,1,12,2],
+                       [13,10,15,20],
+                       [8,14,13,17]]
+        self.path_plan.set_obsticals(self.static,[]) 
+        self.visu.set_obsticales(self.static,[])
+        self.visu.draw_grid(self.path_plan.get_grid())
         
     def teststep_01(self):
         """
@@ -35,4 +45,6 @@ class tp_path_plan_dp(tc_base):
         """
         goal = [10,20]
         cost = 1
-        self.path_plan.compute_value(goal, cost)
+        value_grid = self.path_plan.compute_value(goal, cost)
+        self.logger.write_log("value_grid: ")
+        self.visu.draw_grid(value_grid)
