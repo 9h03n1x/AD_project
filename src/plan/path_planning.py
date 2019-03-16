@@ -5,6 +5,7 @@ Created on 09.03.2019
 '''
 
 from logger.logger import logger
+from ego.simple_ego import simple_ego
 
 
 class path_base():
@@ -100,17 +101,25 @@ class path_dynamic_prog(path_base):
         path_base.__init__(self)
         self.logger = logger("path_dynamic_prog")
         self.value_grid = []
+        self.ego = simple_ego()
         
-    def compute_value(self,goal,cost):
+    def compute_value(self,goal,cost, use_ego = False):
         # ----------------------------------------
         # compute the values of the single grid cells
         # ----------------------------------------
-        delta = [[-1, 0 ], # go up
-                 [ 0, -1], # go left
-                 [ 1, 0 ], # go down
-                 [ 0, 1 ]] # go right
-
-        delta_name = ['^', '<', 'v', '>']
+        
+        
+        if use_ego == False:
+            delta = [[-1, 0 ], # go up
+                     [ 0, -1], # go left
+                     [ 1, 0 ], # go down
+                     [ 0, 1 ]] # go right
+        else:
+            #TODO: Implement the simple Ego modell
+            pass
+            
+    
+            delta_name = ['^', '<', 'v', '>']
         value = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         closed = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         policy = [[" " for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
