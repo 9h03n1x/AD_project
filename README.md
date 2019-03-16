@@ -11,7 +11,8 @@ The Project consist of the Following Modules:
   - perception: modelling the perception algo's 
   - plan: modelling the search algo's and behavior planner
     - path_planning:
-      - A* Planner (Implemented)
+      - A* Planner (Implemented):
+        also has no a dynamic cost function 
       - Dynamic Programming Planner (not yet implemented)
       - Hypbrid A* Planner (not yet implemented)
   - ego: describing a simple motion modell
