@@ -35,6 +35,9 @@ class test_planner(object):
         
 
     def run(self):
+        """
+        runs all the registered testcases
+        """
         for tc_key in self.list_tc.keys():
             self.logger.write_log("-------------------------------------------------")
             self.logger.write_log("running testcase: " + tc_key)

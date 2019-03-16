@@ -16,9 +16,9 @@ if __name__ == '__main__':
 
     tp = test_planner()
     log = logger("main")
-    tp.get_available_testcases()
     res = []
     for i in range(0,1):
+        tp.get_available_testcases()
         results = tp.run()
     
     avg_dur = 0
