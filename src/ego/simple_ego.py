@@ -16,6 +16,7 @@ class simple_ego(ego_base):
                      "E":[ 0, -1],
                      "S":[ 1, 0 ],
                      "W":[ 0, 1 ]}
+        self.direction = ""
     def set_position(self,x,y,theta):
         self.position = {"x": x, "y": y, "theta": theta}
         
@@ -72,3 +73,34 @@ class simple_ego(ego_base):
             
         return move_opt, name_opt
         
+    def get_direction(self, direction):
+        """
+        returns the symbol of current movement
+        """
+        
+        if self.direction == direction:
+            val = "s_"
+            options = self.move_name[direction]
+        elif self.direction == "":
+            val = "n_"
+            options = "NWSE"
+        else:
+            options = self.move_name[direction]
+            
+            if self.direction == options[0]:
+                val = "R_"
+            elif self.direction == options[2]:
+                val = "L_"
+            else:
+                val = "-_"
+                self.logger.write_log("direction: " + str(direction) + "\t options: " + str(options))
+        self.direction = direction    
+        val = val + direction
+        delta = []
+        delta_names = []
+        for ele in options:
+            delta_names.append(ele)
+            delta.append(self.move[ele])
+        return val
+                
+ 
