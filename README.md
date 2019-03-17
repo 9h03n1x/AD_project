@@ -13,7 +13,7 @@ The Project consist of the Following Modules:
     - path_planning:
       - A* Planner (Implemented):
         also has now a dynamic cost function 
-      - Dynamic Programming Planner (under work, compute value is done)
+      - Dynamic Programming Planner (under work, compute value is done, needs checking)
       - Hypbrid A* Planner (not yet implemented)
   - ego: describing a simple motion modell
     - ego_base: providing the basic features for ego modells
