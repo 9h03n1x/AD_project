@@ -17,7 +17,7 @@ if __name__ == '__main__':
     tp = test_planner()
     log = logger("main")
     res = []
-    for i in range(0,100):
+    for i in range(0,1):
         tp.get_available_testcases()
         results = tp.run()
     
