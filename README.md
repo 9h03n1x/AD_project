@@ -25,7 +25,7 @@ So far only one testcase is implemented, the testcase for the A* Algo
 
 To run the testcase, just clone the repo and run the main.py
 
-How To add a Testcase:
+How To add a Testcase: (This tutorial will be transported to the Wiki in the Future)
 
 1. Create a new Testcase file in the testcase folder
 2. the Class in the testcase file has to have a "__init__" method, 
@@ -36,7 +36,7 @@ How To add a Testcase:
    for the second step in the preconditions just ad another method, called precondition_02(self), please do not pass parameters via the   teststeps
     to add a teststep:
       def teststep_01(self):
-  
+ 
 3. Now the testcase has to be registered in the init.py file of the testcase module
   - import the testcase
     from . import tc_my_testcase
