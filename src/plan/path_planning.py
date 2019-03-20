@@ -281,9 +281,11 @@ class path_hyprid_a_star():
         '''
         Constructor
         '''
+        self.ego = simple_ego()
 
-    def get_new_xy(self,x,y, v,delta_t,delta_w, phi):
+    def get_new_xy(self,x,y, v,delta_t, phi,str_angle):
         t = 1
+        delta_w = (v/self.ego.length)*math.tan(str_angle)
         
         x_new = x + v * (delta_t/t)*math.cos(phi)
         y_new = y + v * (delta_t/t)*math.sin(phi)

@@ -8,7 +8,7 @@ class simple_ego(ego_base):
     
     def __init__(self):
         ego_base.__init__(self)
-        
+        self.length = 1
         self.position = {"x": 0, "y": 0, "theta": "N"}
         self.move_name = {"N":"WNE", "E":"NES", "S":"ESW", "W":"SWN"}
         self.move = {"N":[-1, 0 ],
