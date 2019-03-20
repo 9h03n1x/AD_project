@@ -6,6 +6,7 @@ Created on 09.03.2019
 
 from logger.logger import logger
 from ego.simple_ego import simple_ego
+import math
 
 
 class path_base():
@@ -280,3 +281,12 @@ class path_hyprid_a_star():
         '''
         Constructor
         '''
+
+    def get_new_xy(self,x,y, v,delta_t,delta_w, phi):
+        t = 1
+        
+        x_new = x + v * (delta_t/t)*math.cos(phi)
+        y_new = y + v * (delta_t/t)*math.sin(phi)
+        phi_new = phi + (delta_t/t)*delta_w
+        
+        return x_new, y_new, phi_new
