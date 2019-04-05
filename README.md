@@ -45,3 +45,5 @@ How To add a Testcase: (This tutorial will be transported to the Wiki in the Fut
   - add the testcase class to the execution list
     tc_list.append(tc_my_testcase.tc_my_testcase)
 
+
+Next Steps will be the trajectory Planner and the PiD Control
