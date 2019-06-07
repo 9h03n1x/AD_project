@@ -104,31 +104,26 @@ class path_dynamic_prog(path_base):
         self.value_grid = []
         self.ego = simple_ego()
         
-    def compute_value(self,goal,cost, use_ego = False):
+    def compute_value(self,goal,cost):
         # ----------------------------------------
         # compute the values of the single grid cells
         # ----------------------------------------
         
         
-        if use_ego == False:
-            delta = [[-1, 0 ], # go up
-                     [ 0, -1], # go left
-                     [ 1, 0 ], # go down
-                     [ 0, 1 ]] # go right
-            delta_name = ['^', '<', 'v', '>']
-        else:
-            #TODO: Implement the simple Ego modell
-            delta = self.ego.get_move_options()
-            delta_name = []
-            
-    
-            
+        
+        delta = [[-1, 0 ], # go up
+                 [ 0, -1], # go left
+                 [ 1, 0 ], # go down
+                 [ 0, 1 ]] # go right
+        delta_name = ['^', '<', 'v', '>']
+               
         value = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         closed = [[0 for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         policy = [[" " for row in range(len(self.grid[0]))] for col in range(len(self.grid))]
         
         x = goal[0]
         y = goal[1]
+        self.ego.set_position(x,y,"N")
         closed[x][y]=1
         g = 1
         found = False
@@ -137,6 +132,7 @@ class path_dynamic_prog(path_base):
         option = [[g,x,y]]
         max_iter = len(self.grid[0])*len(self.grid)+10
         while found == False and resign == False and count <max_iter :
+            
             count = count + 1
             if len(option)== 0:
                 resign = True
@@ -165,14 +161,19 @@ class path_dynamic_prog(path_base):
                                 option.append([g,x2,y2])
                             closed[x2][y2] = 1
         
+        
         #get the policy for the movements
         for x in range(len(self.grid)):
             for y in range(len(self.grid[0])):
                 if value[x][y] < 999 and value[x][y] >0:
-                    policy[x][y] = "x"
+                    #policy[x][y] = "x"
                     lowest_val2 = 999
                     target = 0
+                    # update the ego position to geht the correct movement options
+                    #delta, delta_name = self.ego.get_move_options()
+                    
                     for i in range(len(delta)):
+                        #self.ego.update_position([x,y])
                         x2 = x + delta[i][0]
                         y2 = y + delta[i][1]
                         if x2 >= 0 and x2 < len(self.grid) and y2 >=0 and y2 < len(self.grid[0]):
@@ -180,7 +181,11 @@ class path_dynamic_prog(path_base):
                                 lowest_val2 = value[x2][y2]
                                 if value[x][y] > lowest_val2:
                                     target = i
-                    policy[x][y] = delta_name[target]
+                                    t_x = x2
+                                    t_y = y2
+                    policy[x][y]= delta_name[target]
+                    #self.ego.update_position([x + delta[i][0],y + delta[i][1]])
+        
         policy[goal[0]][goal[1]] ="*"
         
         self.value_grid = value
